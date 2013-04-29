@@ -74,5 +74,14 @@ _TEXT	ENDS
 
 ### F&#35;
 
-```
+``` csharp
+internal static int factorialHelper@2(int x, int acc)
+{
+    while (x > 1)
+    {
+        acc = x * acc;
+        x--;
+    }
+    return acc;
+}
 ```
