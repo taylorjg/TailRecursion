@@ -70,6 +70,28 @@ _TEXT	ENDS
 ### C&#35;
 
 ```
+.method private hidebysig static 
+    int32 FactorialHelper (
+        int32 x,
+        int32 acc
+    ) cil managed 
+{
+    IL_0000: ldarg.0
+    IL_0001: ldc.i4.1
+    IL_0002: bgt.s IL_0006
+
+    IL_0004: ldarg.1
+    IL_0005: ret
+
+    IL_0006: ldarg.0
+    IL_0007: ldc.i4.1
+    IL_0008: sub
+    IL_0009: ldarg.0
+    IL_000a: ldarg.1
+    IL_000b: mul
+    IL_000c: call int32 TailRecursion.Program::FactorialHelper(int32,  int32)
+    IL_0011: ret
+}
 ```
 
 ### F&#35;
