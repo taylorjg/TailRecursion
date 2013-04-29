@@ -11,6 +11,10 @@ what the deal was with other languages like C# and C++. So I decided to experime
 
 ### C++
 
+By enabling the "Assembly With Source Code" option for the "Assembler Output" setting on the Output Files tab,
+we can view the generated assembly together with the source code. It looks like the recursion inside FactorialHelper
+has been replaced with a loop (see the jg SHORT $LL4@FactorialH).
+
 ``` assembly
 ;  COMDAT ?FactorialHelper@@YAHHH@Z
 _TEXT	SEGMENT
@@ -42,6 +46,9 @@ $LN7@FactorialH:
 _TEXT	ENDS
 ```
 
+Interestingly, the Factorial method invokes the FactorialHelper method by jumping to it instead of calling it
+(see jmp ?FactorialHelper@@YAHHH@Z).
+
 ``` assembly
 ;	COMDAT ?Factorial@@YAHH@Z
 _TEXT	SEGMENT
@@ -69,6 +76,8 @@ _TEXT	ENDS
 
 ### C&#35;
 
+Looking at the IL for the FactorialHelper method, it can clearly be seen that there is a call instruction.
+
 ```
 .method private hidebysig static 
     int32 FactorialHelper (
@@ -95,6 +104,9 @@ _TEXT	ENDS
 ```
 
 ### F&#35;
+
+Using JustDecompile to examine the F# assembly in C#, it can be seen that the
+recursion has been replaced with a loop.
 
 ``` csharp
 internal static int factorialHelper@2(int x, int acc)
